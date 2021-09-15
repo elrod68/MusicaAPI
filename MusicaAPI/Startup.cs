@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MusicaAPI.Interfaces;
 using MusicaAPI.Models;
+using MusicaAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +33,10 @@ namespace MusicaAPI
 
             services.AddControllers();
 
-            services.AddDbContext<musicaDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")));
+            services.AddDbContext<musicaDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")),ServiceLifetime.Singleton);
+            services.AddSingleton<IRepository<Album,int>, AlbumRepository>();
+
+            services.AddScoped<DbContext, musicaDBContext>();
 
             services.AddSwaggerGen(c =>
             {
