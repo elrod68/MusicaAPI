@@ -37,10 +37,7 @@ namespace MusicaAPI.Repositories
                 using (var context = _context)
                 {
                     var albums = context.Albums.ToList();
-                    foreach (var item in albums)
-                    {
-                        Console.WriteLine(item.AlbumName);
-                    }
+                  
                     return albums;
                 }
             }
