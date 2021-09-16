@@ -18,7 +18,7 @@ namespace MusicaAPI.Repositories
             _context = context;
         }
 
-        public async Task<Q> Add(T entity)
+        public virtual async Task<Q> Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
             int res = await _context.SaveChangesAsync();
@@ -26,22 +26,22 @@ namespace MusicaAPI.Repositories
             else return default(Q);
         }
 
-        public async Task<List<T>> Find(Expression<Func<T, bool>> expression)
+        public virtual async Task<List<T>> Find(Expression<Func<T, bool>> expression)
         {
             return await _context.Set<T>().Where(expression).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAll()
         {
             return await _context.Set<T>().ToListAsync();
         }
 
-        public Task<T> GetById(Q id)
+        public virtual Task<T> GetById(Q id)
         {
             return Task.FromResult(_context.Set<T>().Find(id));
         }
 
-        public async Task<Q> Remove(Q id)
+        public virtual async Task<Q> Remove(Q id)
         {
             var toRemove = _context.Set<T>().Find(id);
             if (toRemove != null)
@@ -53,7 +53,7 @@ namespace MusicaAPI.Repositories
             return default(Q);
         }
 
-        public async Task<Q> Update(T entity)
+        public virtual async Task<Q> Update(T entity)
         {
             _context.Set<T>().Update(entity);
             int res = await _context.SaveChangesAsync();

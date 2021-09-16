@@ -46,10 +46,10 @@ namespace MusicaAPI.Models
 
                 entity.Property(e => e.ArtistName).HasMaxLength(255);
 
-                entity.HasOne(d => d.AlbumType)
-                    .WithMany(p => p.Albums)
-                    .HasForeignKey(d => d.AlbumTypeId)
-                    .HasConstraintName("FK_Albums_AlbumTypes");
+                //entity.HasOne(d => d.AlbumType)
+                //    .HasForeignKey(d => d.AlbumTypeId)
+                //    .HasConstraintName("FK_Albums_AlbumTypes");
+
             });
 
             modelBuilder.Entity<AlbumType>(entity =>
