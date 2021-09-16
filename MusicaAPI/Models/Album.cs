@@ -14,6 +14,6 @@ namespace MusicaAPI.Models
         public byte? AlbumTypeId { get; set; }
         public int? AlbumStock { get; set; }
 
-        //public virtual AlbumType AlbumType { get; set; }
+        public virtual AlbumType AlbumType { get; set; }
     }
 }
