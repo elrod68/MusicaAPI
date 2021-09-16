@@ -16,11 +16,12 @@ namespace MusicaAPI.Controllers
     {
 
         private readonly ILogger<AlbumController> _logger;
-        private readonly IRepository<Album,int> _albums;
+        private readonly GenericRepository<Album, int> _repo;
 
-        public AlbumController(ILogger<AlbumController> logger)
+        public AlbumController(ILogger<AlbumController> logger, GenericRepository<Album,int> repo)
         {
             _logger = logger;
+            _repo = repo;
         }
 
         [HttpGet("GetAll")]
@@ -28,7 +29,7 @@ namespace MusicaAPI.Controllers
         {
             try
             {
-                return null;
+                return await _repo.GetAll();
             }
             catch (Exception ex)
             {
