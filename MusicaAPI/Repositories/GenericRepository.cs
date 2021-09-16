@@ -9,7 +9,7 @@ using MusicaAPI.Models;
 
 namespace MusicaAPI.Repositories
 {
-    public class GenericRepository<T, Q> : IGenericRepository<T, Q> where T : class where Q : IConvertible
+    public class GenericRepository<T, Q> : IGenericRepository<T, Q> where T : GenericEntity<Q> where Q : IComparable
     {
         protected readonly ApplicationDBContext _context;
 
@@ -18,10 +18,12 @@ namespace MusicaAPI.Repositories
             _context = context;
         }
 
-        public async Task Add(T entity)
+        public async Task<Q> Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
-            await _context.SaveChangesAsync();
+            int res = await _context.SaveChangesAsync();
+            if (res > 0) return entity.ID;
+            else return default(Q);
         }
 
         public async Task<List<T>> Find(Expression<Func<T, bool>> expression)
@@ -39,11 +41,24 @@ namespace MusicaAPI.Repositories
             return Task.FromResult(_context.Set<T>().Find(id));
         }
 
-        public Task Remove(T entity)
+        public async Task<Q> Remove(Q id)
         {
-            _context.Set<T>().Remove(entity);
-            return _context.SaveChangesAsync();
+            var toRemove = _context.Set<T>().Find(id);
+            if (toRemove != null)
+            {
+                _context.Set<T>().Remove(toRemove);
+                int res = await _context.SaveChangesAsync();
+                if (res > 0) return id;
+            }
+            return default(Q);
         }
 
+        public async Task<Q> Update(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            int res = await _context.SaveChangesAsync();
+            if (res > 0) return entity.ID;
+            else return default(Q);
+        }
     }
 }
