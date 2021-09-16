@@ -31,10 +31,10 @@ namespace MusicaAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")), ServiceLifetime.Singleton);
+            services.AddSingleton<GenericRepository<Album, int>, AlbumRepository>();
 
-            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")),ServiceLifetime.Singleton);
-            services.AddSingleton<GenericRepository<Album,int>, AlbumRepository>();
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -61,6 +61,7 @@ namespace MusicaAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

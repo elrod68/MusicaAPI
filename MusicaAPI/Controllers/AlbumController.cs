@@ -38,5 +38,19 @@ namespace MusicaAPI.Controllers
             }
         }
 
+        [HttpGet("{ID}")]
+        public async Task<Album> Get(int ID)
+        {
+            try
+            {
+                return await _repo.GetById(ID);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+        }
+
     }
 }
