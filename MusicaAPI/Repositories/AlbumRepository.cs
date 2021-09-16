@@ -13,9 +13,9 @@ namespace MusicaAPI.Repositories
 {
     public class AlbumRepository : IRepository<Album, int>
     {
-        private readonly musicaDBContext _context;
+        private readonly ApplicationDBContext _context;
 
-        public AlbumRepository(musicaDBContext context)
+        public AlbumRepository(ApplicationDBContext context)
         {
             _context = context;   
         }

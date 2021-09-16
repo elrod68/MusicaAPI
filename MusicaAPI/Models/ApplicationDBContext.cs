@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MusicaAPI.Models
 {
-    public partial class musicaDBContext : DbContext
+    public partial class ApplicationDBContext : DbContext
     {
-        public musicaDBContext()
+        public ApplicationDBContext()
         {
         }
 
-        public musicaDBContext(DbContextOptions<musicaDBContext> options)
+        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
             : base(options)
         {
         }

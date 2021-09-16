@@ -11,17 +11,16 @@ using System.Threading.Tasks;
 namespace MusicaAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AlbumController : ControllerBase
     {
 
         private readonly ILogger<AlbumController> _logger;
-        private readonly musicaDBContext _context;
+        private readonly IRepository<Album,int> _albums;
 
-        public AlbumController(ILogger<AlbumController> logger, musicaDBContext context)
+        public AlbumController(ILogger<AlbumController> logger)
         {
             _logger = logger;
-            _context = context;
         }
 
         [HttpGet("GetAll")]
@@ -29,9 +28,7 @@ namespace MusicaAPI.Controllers
         {
             try
             {
-                IRepository<Album, int> rep = new AlbumRepository(_context);
-
-                return await rep.GetAll();
+                return null;
             }
             catch (Exception ex)
             {

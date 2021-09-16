@@ -33,10 +33,10 @@ namespace MusicaAPI
 
             services.AddControllers();
 
-            services.AddDbContext<musicaDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")),ServiceLifetime.Singleton);
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")),ServiceLifetime.Singleton);
             services.AddSingleton<IRepository<Album,int>, AlbumRepository>();
 
-            services.AddScoped<DbContext, musicaDBContext>();
+            services.AddScoped<DbContext, ApplicationDBContext>();
 
             services.AddSwaggerGen(c =>
             {
