@@ -25,7 +25,7 @@ namespace MusicaAPI.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult> GetAll()
         {
             try
             {
@@ -41,7 +41,7 @@ namespace MusicaAPI.Controllers
         }
 
         [HttpGet("{ID}")]
-        public async Task<IActionResult> Get(int ID)
+        public async Task<ActionResult> Get(int ID)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace MusicaAPI.Controllers
 
         [HttpPost]
         [Route("Add")]
-        public async Task<IActionResult> Add(Album album)
+        public async Task<ActionResult> Add(Album album)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace MusicaAPI.Controllers
         }
 
         [HttpDelete("{ID}")]
-        public async Task<IActionResult> Delete(int ID)
+        public async Task<ActionResult> Delete(int ID)
         {
             int result = 0;
 
@@ -106,7 +106,7 @@ namespace MusicaAPI.Controllers
         }
 
         [HttpPut()]
-        public async Task<IActionResult> Update(Album album)
+        public async Task<ActionResult> Update(Album album)
         {
             if (ModelState.IsValid)
             {
