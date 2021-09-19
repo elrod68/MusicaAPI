@@ -6,6 +6,7 @@ using MusicaAPI.Models;
 
 namespace MusicaAPI.Interfaces
 {
+    //Generic Album Repository
     public interface IRepository<T,Q> where T:Album
     {
         Task<List<T>> GetAll();
