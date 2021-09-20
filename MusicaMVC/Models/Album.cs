@@ -1,6 +1,6 @@
 ﻿#nullable disable
 
-namespace MusicaAPI.Models
+namespace MusicaMVC.Models
 {
     public partial class Album:GenericEntity<int>
     {
