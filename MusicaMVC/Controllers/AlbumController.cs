@@ -79,6 +79,47 @@ namespace MusicaMVC.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateAlbum(int id)
+        {
+            Album album = new Album();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44364/api/Album/" + id.ToString()))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    album = JsonConvert.DeserializeObject<Album>(apiResponse);
+                }
+            }
+            return View(album);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAlbum(Album album)
+        {
+            Album receivedAlbum = new Album();
+            if (ModelState.IsValid)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var content = new MultipartFormDataContent();
+                    content.Add(new StringContent(album.ID.ToString()), "ID");
+                    content.Add(new StringContent(album.AlbumName), "AlbumName");
+                    content.Add(new StringContent(album.ArtistName), "ArtistName");
+                    content.Add(new StringContent(album.AlbumLabel), "AlbumLabel");
+                    content.Add(new StringContent(album.AlbumTypeId.ToString()), "AlbumTypeId");
+                    content.Add(new StringContent(album.AlbumStock.ToString()), "AlbumStock");
+                    using (var response = await httpClient.PutAsync("https://localhost:44395/api/Customer/", content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        ViewBag.Result = "Success";
+                        receivedAlbum = JsonConvert.DeserializeObject<Album>(apiResponse);
+                    }
+                }
+            }
+            return View(receivedAlbum);
+        }
     }
     
 }
