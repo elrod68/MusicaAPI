@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicaAPI", "MusicaAPI\Musi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "TestAPI\TestAPI.csproj", "{AF73561E-BEB6-4E03-952C-E293A38EA4F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicaMVC", "MusicaMVC\MusicaMVC.csproj", "{9545B7E9-6595-4F0A-ABB7-F8E1692A673F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AF73561E-BEB6-4E03-952C-E293A38EA4F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF73561E-BEB6-4E03-952C-E293A38EA4F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF73561E-BEB6-4E03-952C-E293A38EA4F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9545B7E9-6595-4F0A-ABB7-F8E1692A673F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9545B7E9-6595-4F0A-ABB7-F8E1692A673F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9545B7E9-6595-4F0A-ABB7-F8E1692A673F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9545B7E9-6595-4F0A-ABB7-F8E1692A673F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
