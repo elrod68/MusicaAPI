@@ -1,0 +1,46 @@
+﻿@model Album
+@{ Layout = "_Layout"; ViewBag.Title = "Get Album by Id";}
+
+<h2>Get Customer by Id <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h2>
+<form method="post">
+    <div class="form-group">
+        <label for="id">Id:</label>
+        <input class="form-control" name="id" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Get Album</button>
+    </div>
+</form>
+
+@if (Model != null && Model.ID != 0)
+{
+    <h2>Customer</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Label</th>
+                <th>Type</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.ID</td>
+                <td>@Model.AlbumName</td>
+                <td>@Model.ArtistName</td>
+                <td>@Model.AlbumLabel</td>
+                <td>@Model.AlbumType.AlbumTypeDescr</td>
+                <td>@Model.AlbumStock</td>
+            </tr>
+        </tbody>
+    </table>
+}
+else if (Model != null && Model.ID == 0)
+{
+    <div class="text-center">
+        <h1>No album exists with this id!!</h1>
+    </div>
+}

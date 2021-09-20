@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicaMVC.Controllers
@@ -26,5 +27,55 @@ namespace MusicaMVC.Controllers
 
             return View(albumList);
         }
+
+        [HttpGet]
+        public ViewResult GetAlbum()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetAlbum(int id)
+        {
+            Album album = new Album();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44364/api/Album/" + id.ToString()))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    album = JsonConvert.DeserializeObject<Album>(apiResponse);
+                }
+            }
+
+            return View(album);
+        }
+
+        [HttpGet]
+        public ViewResult AddAlbum()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAlbum(Album album)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var httpClient=new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(album), Encoding.UTF8, "application/json");
+
+                    using (var response = await httpClient.PostAsync("https://localhost:44364/api/Add/", content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        album = JsonConvert.DeserializeObject<Album>(apiResponse);
+                    }
+                }
+                return View(album);
+            }
+            return View();
+        }
     }
+    
 }

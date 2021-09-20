@@ -1,0 +1,69 @@
+﻿@model Album
+@{ Layout = "_Layout"; ViewBag.Title = "Add a new album";}
+
+<h2>Add a new album <a asp-action="Index" class="btn btn-sm btn-secondary">Back</a></h2>
+
+<form asp-action="AddAlbum">
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="AlbumName">Name:</label>
+        <input asp-for="AlbumName" class="form-control" />
+        <span asp-validation-for="AlbumName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ArtistName">Artist:</label>
+        <input asp-for="ArtistName" class="form-control" />
+        <span asp-validation-for="ArtistName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AlbumLabel">Label:</label>
+        <input asp-for="AlbumLabel" class="form-control" />
+        <span asp-validation-for="AlbumLabel" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AlbumStock">Stock quantity:</label>
+        <input asp-for="AlbumStock" class="form-control" />
+        <span asp-validation-for="AlbumStock" class="text-danger"></span>
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Add Album</button>
+    </div>
+</form>
+<br />
+<br />
+<form asp-action="AddAlbum" method="get">
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary" align="right">Clear Form</button>
+    </div>
+</form>
+
+
+@if (Model != null)
+{
+    <h2>Album</h2>
+
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr colspan="2">
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Label</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.AlbumName</td>
+
+                <td>@Model.ArtistName</td>
+
+                <td>@Model.AlbumLabel</td>
+
+                <td>@Model.AlbumStock</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="alert-info">Album Added!!</div>
+}

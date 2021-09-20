@@ -106,7 +106,7 @@ namespace MusicaAPI.Controllers
         }
 
         [HttpPut()]
-        public async Task<ActionResult> Update(Album album)
+        public async Task<ActionResult> Update( Album album)
         {
             if (ModelState.IsValid)
             {
