@@ -19,6 +19,7 @@ namespace MusicaMVC.Models
         public string AlbumLabel { get; set; }
         //[Required(ErrorMessage = "Please select an album type")]
         [DefaultValue(1)]
+        [Required(ErrorMessage = "Please select a type")]
         public int AlbumTypeId { get; set; }
         [Required(ErrorMessage = "Please put stock quantity")]
         public int? AlbumStock { get; set; }
