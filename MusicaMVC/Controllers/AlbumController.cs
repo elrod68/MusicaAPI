@@ -60,7 +60,7 @@ namespace MusicaMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAlbum(Album album)
         {
-            if (album.AlbumTypeId == 0) album.AlbumTypeId = 1;
+            //if (album.AlbumTypeId == 0) album.AlbumTypeId = 1;
 
             if (ModelState.IsValid)
             {
@@ -71,7 +71,8 @@ namespace MusicaMVC.Controllers
                     using (var response = await httpClient.PostAsync("https://localhost:44364/api/Album/Add", content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
-                        album = JsonConvert.DeserializeObject<Album>(apiResponse);
+                        int newAlbumID = JsonConvert.DeserializeObject<int>(apiResponse);
+                        if (newAlbumID <= 0) return View();
                     }
                 }
                 return View(album);

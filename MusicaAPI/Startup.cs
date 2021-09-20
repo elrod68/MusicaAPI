@@ -32,7 +32,7 @@ namespace MusicaAPI
         {
 
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")), ServiceLifetime.Scoped);
-            services.AddScoped<GenericRepository<Album, int>, AlbumRepository>();
+            services.AddScoped<AlbumRepository, AlbumRepository>();
 
             services.AddControllers();
 

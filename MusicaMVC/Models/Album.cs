@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MusicaMVC.Models
@@ -12,6 +13,7 @@ namespace MusicaMVC.Models
         [Required(ErrorMessage = "Please put a label")]
         public string AlbumLabel { get; set; }
         //[Required(ErrorMessage = "Please select an album type")]
+        [DefaultValue(1)]
         public int AlbumTypeId { get; set; }
         [Required(ErrorMessage = "Please put stock quantity")]
         public int? AlbumStock { get; set; }

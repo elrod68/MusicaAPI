@@ -24,5 +24,10 @@ namespace MusicaAPI.Repositories
         {
             return Task.FromResult(_context.Set<Album>().Include("AlbumType").Where(t => t.ID == id).FirstOrDefault());
         }
+
+        public async Task<IEnumerable<AlbumType>> GetAllAlbumTypes()
+        {
+            return await _context.Set<AlbumType>().ToListAsync();
+        }
     }
 }
