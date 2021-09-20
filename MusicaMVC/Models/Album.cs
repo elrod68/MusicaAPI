@@ -29,7 +29,7 @@ namespace MusicaMVC.Models
 
         //
 
-        public async Task<List<AlbumType>> AlbumTypes()
+        public static async Task<List<AlbumType>> AlbumTypes()
         {
             List<AlbumType> typeList = new List<AlbumType>();
 
@@ -43,6 +43,11 @@ namespace MusicaMVC.Models
             }
 
             return typeList;
+        }
+
+        public List<AlbumType> AT()
+        {
+            return new List<AlbumType>();
         }
     }
 }
