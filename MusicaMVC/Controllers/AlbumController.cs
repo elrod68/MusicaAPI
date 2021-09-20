@@ -1,0 +1,30 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MusicaMVC.Models;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace MusicaMVC.Controllers
+{
+    public class AlbumController : Controller
+    {
+        public async Task< IActionResult> Index()
+        {
+            List<Album> albumList = new List<Album>();
+
+            using(var httpClient=new HttpClient())
+            {
+                using (var response=await httpClient.GetAsync("https://localhost:44364/api/Album/GetAll"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    albumList = JsonConvert.DeserializeObject<List<Album>>(apiResponse);
+                }
+            }
+
+            return View(albumList);
+        }
+    }
+}
