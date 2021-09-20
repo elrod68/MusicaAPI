@@ -23,14 +23,14 @@ namespace TestAPI
             optionsBuilder.UseSqlServer(conString);
             var AppDBContext = new ApplicationDBContext(optionsBuilder.Options);
 
-            var genRepo = new GenericRepository<Album, int>(AppDBContext);
+            var genRepo = new AlbumRepository(AppDBContext);
             var controller = new AlbumController(new Microsoft.Extensions.Logging.Abstractions.NullLogger<AlbumController>(), genRepo);
 
             return controller;
         }
 
         [Fact]
-        public async void GetAllReturnsOK()
+        public async void GetAllReturnsSome()
         {
           
             var a= await GetController().GetAll();
