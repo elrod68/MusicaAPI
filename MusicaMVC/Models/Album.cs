@@ -1,6 +1,11 @@
 ﻿#nullable disable
+
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace MusicaMVC.Models
 {
@@ -21,5 +26,23 @@ namespace MusicaMVC.Models
         public virtual AlbumType AlbumType {
             get;
             set; }
+
+        //
+
+        public async Task<List<AlbumType>> AlbumTypes()
+        {
+            List<AlbumType> typeList = new List<AlbumType>();
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44364/api/Album/GetAlbumTypes"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    typeList = JsonConvert.DeserializeObject<List<AlbumType>>(apiResponse);
+                }
+            }
+
+            return typeList;
+        }
     }
 }

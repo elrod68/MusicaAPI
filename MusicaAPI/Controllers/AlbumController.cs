@@ -16,9 +16,9 @@ namespace MusicaAPI.Controllers
     {
 
         private readonly ILogger<AlbumController> _logger;
-        private readonly AlbumRepository _repo;
+        private readonly GenericRepository<Album, int> _repo;
 
-        public AlbumController(ILogger<AlbumController> logger, AlbumRepository repo)
+        public AlbumController(ILogger<AlbumController> logger, GenericRepository<Album, int> repo)
         {
             _logger = logger;
             _repo = repo;
@@ -137,7 +137,7 @@ namespace MusicaAPI.Controllers
         {
             try
             {
-                var albumTypes = await _repo.GetAllAlbumTypes();
+                var albumTypes = await ((AlbumRepository)_repo).GetAllAlbumTypes();
                 if (albumTypes == null) return NotFound();
                 return Ok(albumTypes);
             }
