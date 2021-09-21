@@ -34,7 +34,7 @@ namespace MusicaAPI.Models
             get
             {
                 if (_context != null) return _context.Set<AlbumType>().Find(AlbumTypeId).AlbumTypeDescr;
-                else return "Context not initialized";
+                else return "";
             }
         }
     }
