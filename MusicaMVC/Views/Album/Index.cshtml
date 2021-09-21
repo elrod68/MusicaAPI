@@ -9,6 +9,9 @@
     .Grid(Model)
     .Build(columns =>
     {
+        //<a href="/Album/UpdateAlbum/1">
+        columns.Add(model => "<a href=\"/Album/UpdateAlbum/" + model.ID + "\"> <img src=\"/icon/edit.png\" /> </a>").Encoded(false);
+        columns.Add(model => model.ID).Titled("ID");
         columns.Add(model => model.AlbumName).Titled("Name");
         columns.Add(model => model.ArtistName).Titled("Artist");
         columns.Add(model => model.AlbumLabel).Titled("Label");
@@ -20,7 +23,13 @@
     .Empty("No data found")
     .Filterable()
     .Sortable()
-    .Pageable()
+    .Pageable(pager =>
+    {
+        pager.PageSizes = new Dictionary<Int32, String> { { 0, "All" }, { @Startup.albumPageSize, @Startup.albumPageSize.ToString()} };
+        pager.ShowPageSizes = true;
+        pager.CurrentPage = 1;
+        pager.RowsPerPage = @Startup.albumPageSize;
+    })
 )
 
 <table class="table table-sm table-striped table-bordered m-2">
