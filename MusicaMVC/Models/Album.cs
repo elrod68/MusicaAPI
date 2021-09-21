@@ -11,10 +11,6 @@ namespace MusicaMVC.Models
 {
     public partial class Album:GenericEntity<int>
     {
-        public Album()
-        {
-
-        }
 
         [Required(ErrorMessage ="Please put an album name")]
         public string AlbumName { get; set; }
