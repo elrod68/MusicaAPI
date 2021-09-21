@@ -40,6 +40,22 @@ namespace MusicaAPI.Controllers
             }
         }
 
+        [HttpGet("GetPage")]
+        public async Task<ActionResult> GetPage(int pageNumber, int pageSize)
+        {
+            try
+            {
+                var albums = await _repo.GetPage(pageNumber, pageSize);
+                if (albums == null) return NotFound();
+                return Ok(albums);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+        }
+
         [HttpGet("{ID}")]
         public async Task<ActionResult> Get(int ID)
         {

@@ -36,6 +36,13 @@ namespace MusicaAPI.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetPage(int pageNumber, int pageSize)
+        {
+            return await _context.Set<T>()
+                .Skip((pageNumber - 1) * pageSize)
+               .Take(pageSize).ToListAsync();
+        }
+
         public virtual Task<T> GetById(Q id)
         {
             return Task.FromResult(_context.Set<T>().Find(id));
