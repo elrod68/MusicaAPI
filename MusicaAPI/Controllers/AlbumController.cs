@@ -96,7 +96,7 @@ namespace MusicaAPI.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(ID);
             }
             catch (Exception ex)
             {
@@ -114,7 +114,7 @@ namespace MusicaAPI.Controllers
                 {
                     await _repo.Update(album);
 
-                    return Ok();
+                    return Ok(album);
                 }
                 catch (Exception ex)
                 {

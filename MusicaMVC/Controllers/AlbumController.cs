@@ -60,8 +60,6 @@ namespace MusicaMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAlbum(Album album)
         {
-            //if (album.AlbumTypeId == 0) album.AlbumTypeId = 1;
-
             if (ModelState.IsValid)
             {
                 using (var httpClient=new HttpClient())
