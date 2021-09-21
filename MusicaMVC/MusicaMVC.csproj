@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NonFactors.Grid.Mvc6" Version="6.2.4" />
   </ItemGroup>
 
 </Project>
