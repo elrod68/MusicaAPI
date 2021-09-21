@@ -108,7 +108,7 @@ namespace MusicaMVC.Controllers
                     content.Add(new StringContent(album.AlbumLabel), "AlbumLabel");
                     content.Add(new StringContent(album.AlbumTypeId.ToString()), "AlbumTypeId");
                     content.Add(new StringContent(album.AlbumStock.ToString()), "AlbumStock");
-                    using (var response = await httpClient.PutAsync("https://localhost:44395/api/Customer/", content))
+                    using (var response = await httpClient.PutAsync("https://localhost:44364/api/Album/", content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         ViewBag.Result = "Success";
