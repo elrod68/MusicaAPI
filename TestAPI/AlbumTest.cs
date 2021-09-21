@@ -87,7 +87,7 @@ namespace TestAPI
         {
             AlbumController con = GetController();
 
-            Album newAlbum = new Album()
+            Album newAlbum = new Album(_context)
             {
                 AlbumName = name,
                 ArtistName = artist,

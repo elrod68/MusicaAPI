@@ -17,17 +17,22 @@ namespace MusicaAPI.Repositories
 
         public override async Task<IEnumerable<Album>> GetAll()
         {
-            return await _context.Set<Album>().Include("AlbumType").ToListAsync();
+            return await _context.Set<Album>().ToListAsync();
         }
 
         public override Task<Album> GetById(int id)
         {
-            return Task.FromResult(_context.Set<Album>().Include("AlbumType").Where(t => t.ID == id).FirstOrDefault());
+            return Task.FromResult(_context.Set<Album>().Where(t => t.ID == id).FirstOrDefault());
         }
 
         public async Task<IEnumerable<AlbumType>> GetAllAlbumTypes()
         {
             return await _context.Set<AlbumType>().ToListAsync();
+        }
+
+        public  string GetAlbumTypeDescr(int albumTypeID)
+        {
+           return _context.Set<AlbumType>().Find(albumTypeID).AlbumTypeDescr;
         }
     }
 }

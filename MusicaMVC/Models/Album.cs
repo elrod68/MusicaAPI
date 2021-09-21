@@ -25,11 +25,7 @@ namespace MusicaMVC.Models
         [Required(ErrorMessage = "Please put stock quantity")]
         public int? AlbumStock { get; set; }
 
-        public virtual AlbumType AlbumType {
-            get;
-            set; }
-
-        //
+        public string AlbumTypeDescr { get; set; }
 
         public static async Task<List<AlbumType>> AlbumTypes()
         {
@@ -46,6 +42,5 @@ namespace MusicaMVC.Models
 
             return typeList;
         }
-
     }
 }
