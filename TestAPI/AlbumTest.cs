@@ -15,15 +15,16 @@ namespace TestAPI
 {
     public class APITests
     {
-        private const string conString = "Server=.;Database=musicalog;Trusted_Connection=True;";
+        private const string conString = "Server=.;Database=musicalog;Trusted_Connection=True;MultipleActiveResultSets=true;";
+        private ApplicationDBContext _context;
 
         private AlbumController GetController()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDBContext>();
             optionsBuilder.UseSqlServer(conString);
-            var AppDBContext = new ApplicationDBContext(optionsBuilder.Options);
+            _context = new ApplicationDBContext(optionsBuilder.Options);
 
-            var genRepo = new AlbumRepository(AppDBContext);
+            var genRepo = new AlbumRepository(_context);
             var controller = new AlbumController(new Microsoft.Extensions.Logging.Abstractions.NullLogger<AlbumController>(), genRepo);
 
             return controller;
@@ -78,14 +79,15 @@ namespace TestAPI
 
         [Theory]
         [InlineData("Just a new album", "John Doe", "Sony", 1, 5)]
-        [InlineData("Hit 50", "Annie Lennox", "Columbia", 2, 99)]
-        [InlineData("Rap", "Unknown", "Sony", 5, 1)]
-        [InlineData("World music", "Various", "Sony", 5, 3)]
+        [InlineData("50 great hits", "Annie Lennox", "Columbia", 2, 99)]
+        [InlineData("Rap music", "Unknown", "Sony", 5, 1)]
+        [InlineData("World music", "Various", "Sony", 1, 3)]
+        [InlineData("Pop music", "Various", "N/A", 3, 1)]
         public async void AddAndDelete(string name, string artist, string label, int typeID, int stock)
         {
             AlbumController con = GetController();
 
-            Album newAlbum = new Album()
+            Album newAlbum = new Album(_context)
             {
                 AlbumName = name,
                 ArtistName = artist,
