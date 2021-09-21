@@ -11,6 +11,11 @@ namespace MusicaMVC.Models
 {
     public partial class Album:GenericEntity<int>
     {
+        public Album()
+        {
+
+        }
+
         [Required(ErrorMessage ="Please put an album name")]
         public string AlbumName { get; set; }
         [Required(ErrorMessage = "Please put an artist name")]
@@ -46,9 +51,5 @@ namespace MusicaMVC.Models
             return typeList;
         }
 
-        public List<AlbumType> AT()
-        {
-            return new List<AlbumType>();
-        }
     }
 }

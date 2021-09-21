@@ -9,9 +9,14 @@ namespace MusicaAPI.Models
 
         public readonly ApplicationDBContext _context;
 
-        public Album(ApplicationDBContext context)
+        //public Album(ApplicationDBContext context)
+        //{
+        //    _context = context;
+        //}
+
+        public Album()
         {
-            _context = context;
+         
         }
 
         public string AlbumName { get; set; }
@@ -26,12 +31,14 @@ namespace MusicaAPI.Models
         {
             get
             {
-                return  _context.Set<AlbumType>().Find(AlbumTypeId);
+                if (_context != null)
+                    return _context.Set<AlbumType>().Find(AlbumTypeId);
+                else return new AlbumType();
             }
-            //set
-            //{
-            //    AlbumType = value;
-            //}
+            set
+            {
+                AlbumType = value;
+            }
         }
     }
 }
