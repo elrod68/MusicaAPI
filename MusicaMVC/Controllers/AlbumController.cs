@@ -118,6 +118,19 @@ namespace MusicaMVC.Controllers
             }
             return View(receivedAlbum);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAlbum(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync("https://localhost:44364/api/Album/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                }
+            }
+            return RedirectToAction("Index");
+        }
     }
     
 }
