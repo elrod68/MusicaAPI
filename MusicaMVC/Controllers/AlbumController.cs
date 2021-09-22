@@ -12,13 +12,13 @@ namespace MusicaMVC.Controllers
 {
     public class AlbumController : Controller
     {
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             List<Album> albumList = new List<Album>();
 
             using(var httpClient=new HttpClient())
             {
-                using (var response=await httpClient.GetAsync("https://localhost:44364/api/Album/GetAll"))
+                using (var response=await httpClient.GetAsync(Startup.APIBaseURL+ "GetAll"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     albumList = JsonConvert.DeserializeObject<List<Album>>(apiResponse);
@@ -41,7 +41,7 @@ namespace MusicaMVC.Controllers
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44364/api/Album/" + id.ToString()))
+                using (var response = await httpClient.GetAsync(Startup.APIBaseURL + id.ToString()))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     album = JsonConvert.DeserializeObject<Album>(apiResponse);
@@ -66,7 +66,7 @@ namespace MusicaMVC.Controllers
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(album), Encoding.UTF8, "application/json");
 
-                    using (var response = await httpClient.PostAsync("https://localhost:44364/api/Album/Add", content))
+                    using (var response = await httpClient.PostAsync(Startup.APIBaseURL + "Add", content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         int newAlbumID = JsonConvert.DeserializeObject<int>(apiResponse);
@@ -84,7 +84,7 @@ namespace MusicaMVC.Controllers
             Album album = new Album();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44364/api/Album/" + id.ToString()))
+                using (var response = await httpClient.GetAsync(Startup.APIBaseURL + id.ToString()))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     album = JsonConvert.DeserializeObject<Album>(apiResponse);
@@ -108,7 +108,7 @@ namespace MusicaMVC.Controllers
                     content.Add(new StringContent(album.AlbumLabel), "AlbumLabel");
                     content.Add(new StringContent(album.AlbumTypeId.ToString()), "AlbumTypeId");
                     content.Add(new StringContent(album.AlbumStock.ToString()), "AlbumStock");
-                    using (var response = await httpClient.PutAsync("https://localhost:44364/api/Album/", content))
+                    using (var response = await httpClient.PutAsync(Startup.APIBaseURL, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         ViewBag.Result = "Success";
@@ -124,7 +124,7 @@ namespace MusicaMVC.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44364/api/Album/" + id))
+                using (var response = await httpClient.DeleteAsync(Startup.APIBaseURL + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }

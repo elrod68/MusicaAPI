@@ -18,7 +18,7 @@ namespace TestAPI
         private const string conString = "Server=.;Database=musicalog;Trusted_Connection=True;MultipleActiveResultSets=true;";
         private ApplicationDBContext _context;
 
-        private AlbumController GetController()
+        private AlbumController GetAPIController()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDBContext>();
             optionsBuilder.UseSqlServer(conString);
@@ -30,11 +30,16 @@ namespace TestAPI
             return controller;
         }
 
+        private MusicaMVC.Controllers.AlbumController GetMVCController()
+        {
+            return new MusicaMVC.Controllers.AlbumController();
+        }
+
         [Fact]
         public async void GetAllReturnsSome()
         {
           
-            var res= await GetController().GetAll();
+            var res= await GetAPIController().GetAll();
             var albums = (res as OkObjectResult).Value as List<Album>;
 
             Assert.True(albums.Count >= 2);
@@ -43,7 +48,7 @@ namespace TestAPI
         [Fact]
         public async void GetOne()
         {
-            var res = await GetController().Get(1);
+            var res = await GetAPIController().Get(1);
             var album = (res as OkObjectResult).Value as Album;
 
             Assert.True(album!=null);
@@ -52,7 +57,7 @@ namespace TestAPI
         [Fact]
         public async void GetOneAndUpdate()
         {
-            AlbumController con = GetController();
+            AlbumController con = GetAPIController();
 
             var resGet = await con.Get(2);
             var album = (resGet as OkObjectResult).Value as Album;
@@ -71,7 +76,7 @@ namespace TestAPI
         [Fact]
         public async void GetAlbumTypes()
         {
-            var res = await GetController().GetAlbumTypes();
+            var res = await GetAPIController().GetAlbumTypes();
             var albumTypes = (res as OkObjectResult).Value as List<AlbumType>;
 
             Assert.True(albumTypes.Count >= 5);
@@ -85,7 +90,7 @@ namespace TestAPI
         [InlineData("Pop music", "Various", "N/A", 3, 1)]
         public async void AddAndDelete(string name, string artist, string label, int typeID, int stock)
         {
-            AlbumController con = GetController();
+            AlbumController con = GetAPIController();
 
             Album newAlbum = new Album(_context)
             {

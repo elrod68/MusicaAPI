@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MusicaAPI\MusicaAPI.csproj" />
+    <ProjectReference Include="..\MusicaMVC\MusicaMVC.csproj" />
   </ItemGroup>
 
 </Project>

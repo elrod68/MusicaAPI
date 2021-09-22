@@ -14,6 +14,7 @@ namespace MusicaMVC
     public class Startup
     {
         public static int albumPageSize;
+        public static string APIBaseURL;
 
         public Startup(IConfiguration configuration)
         {
@@ -31,6 +32,8 @@ namespace MusicaMVC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //get config settings
+            APIBaseURL = Configuration.GetValue<string>("APIBaseURL");
             albumPageSize = Configuration.GetValue<int>("AlbumPageSize");
 
             if (env.IsDevelopment())
