@@ -5,6 +5,7 @@ using System.ComponentModel;
 
 namespace MusicaAPI.Models
 {
+    //for example CD, Vinul etc.
     public partial class AlbumType
     {
         public int AlbumTypeId { get; set; }

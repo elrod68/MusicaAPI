@@ -24,6 +24,7 @@ namespace MusicaAPI.Controllers
             _repo = repo;
         }
 
+        //get all albums
         [HttpGet("GetAll")]
         public async Task<ActionResult> GetAll()
         {
@@ -40,6 +41,7 @@ namespace MusicaAPI.Controllers
             }
         }
 
+        //to be used with paging logging if needed
         [HttpGet("GetPage")]
         public async Task<ActionResult> GetPage(int pageNumber, int pageSize)
         {
@@ -56,6 +58,7 @@ namespace MusicaAPI.Controllers
             }
         }
 
+        //get album by id, return the album object
         [HttpGet("{ID}")]
         public async Task<ActionResult> Get(int ID)
         {
@@ -72,6 +75,7 @@ namespace MusicaAPI.Controllers
             }
         }
 
+        //add a new album, return the newly created id
         [HttpPost]
         [Route("Add")]
         public async Task<ActionResult> Add(Album album)
@@ -100,6 +104,7 @@ namespace MusicaAPI.Controllers
             return BadRequest();
         }
 
+        //dekete album by id, return the id if deleted succesfully
         [HttpDelete("{ID}")]
         public async Task<ActionResult> Delete(int ID)
         {
@@ -121,6 +126,7 @@ namespace MusicaAPI.Controllers
             }
         }
 
+        //update album specified, return the updated version
         [HttpPut()]
         public async Task<ActionResult> Update([FromForm] Album album)
         {
@@ -148,6 +154,7 @@ namespace MusicaAPI.Controllers
             return BadRequest();
         }
 
+        //return all album types to use in combos etc.
         [HttpGet("GetAlbumTypes")]
         public async Task<ActionResult> GetAlbumTypes()
         {

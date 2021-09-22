@@ -9,6 +9,7 @@ using MusicaAPI.Models;
 
 namespace MusicaAPI.Repositories
 {
+    //generic repository, implementing all basic functions, so the API could be extended rapidly by just adding new descendants of it
     public class GenericRepository<T, Q> : IGenericRepository<T, Q> where T : GenericEntity<Q> where Q : IComparable
     {
         protected readonly ApplicationDBContext _context;

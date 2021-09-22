@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicaAPI.Interfaces
 {
+    //generic repository for Entity T with id type Q
     public interface IGenericRepository<T,Q> where T : class where Q: IComparable
     {
         Task<T> GetById(Q id);

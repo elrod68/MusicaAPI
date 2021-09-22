@@ -30,7 +30,7 @@ namespace MusicaAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //inject application db context and repository
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MusicaDB")), ServiceLifetime.Scoped);
             services.AddScoped<GenericRepository<Album, int>, AlbumRepository>();
 

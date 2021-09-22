@@ -10,6 +10,7 @@ using MusicaAPI.Models;
 
 namespace MusicaAPI.Repositories
 {
+    //the main album repository, just implements album type specific methods
     public class AlbumRepository : GenericRepository<Album, int>
     {
 

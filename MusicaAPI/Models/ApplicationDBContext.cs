@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MusicaAPI.Models
 {
+    //the main app database context to use with Entity Framework
     public partial class ApplicationDBContext : DbContext
     {
         public ApplicationDBContext()
