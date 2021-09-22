@@ -1,20 +1,6 @@
 ﻿@model IEnumerable<Album>
 @{ Layout = "_Layout"; ViewBag.Title = "All Albums";}
 
-<script language="javascript">
-
-
-    function DoPost(num) {
-        var grid = new MvcGrid(document.querySelector('.mvc-grid'));
-        //alert(grid.name);
-        $.post("Album/DeleteAlbum/", { ID: num });
-        //grid.reload();
-        alert("Album deleted");
-        location.reload();
-   }
-
-</script>
-
 <h2>Customers</h2>
 <a asp-action="AddAlbum" class="btn btn-sm btn-primary">Add Album</a>
 <a asp-action="GetAlbum" class="btn btn-sm btn-secondary">Get Album</a>
@@ -35,7 +21,7 @@
 
         columns.Add(model => "<a href=\"javascript: DoPost(" + model.ID + ")\"><img src=\"/icon/remove.png\" /> </a>").Encoded(false);
     })
-    .Id("mvcGrid")
+    .Id("grdAlbums")
     .Using(GridFilterMode.Header)
     .Empty("No data found")
     .Filterable()
@@ -48,3 +34,13 @@
         pager.RowsPerPage = @Startup.albumPageSize;
     })
 )
+
+<script language="javascript">
+
+    function DoPost(num) {
+        $.post("Album/DeleteAlbum/", { ID: num });
+        alert("Album deleted");
+        location.reload();
+    }
+
+</script>
