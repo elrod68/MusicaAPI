@@ -5,9 +5,15 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicaAPI", "MusicaAPI\MusicaAPI.csproj", "{0773C244-5522-4D23-AF6A-87DB17E0A4FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "TestAPI\TestAPI.csproj", "{AF73561E-BEB6-4E03-952C-E293A38EA4F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAPI", "TestAPI\TestAPI.csproj", "{AF73561E-BEB6-4E03-952C-E293A38EA4F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicaMVC", "MusicaMVC\MusicaMVC.csproj", "{9545B7E9-6595-4F0A-ABB7-F8E1692A673F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicaMVC", "MusicaMVC\MusicaMVC.csproj", "{9545B7E9-6595-4F0A-ABB7-F8E1692A673F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{226BC5AE-B669-44D5-84B1-EB8A4BC06436}"
+	ProjectSection(SolutionItems) = preProject
+		musicalog 220921_1.bak = musicalog 220921_1.bak
+		Musicalog API and client.docx = Musicalog API and client.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
