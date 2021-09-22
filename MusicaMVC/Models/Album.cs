@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MusicaMVC.Models
 {
+    //album class
     public partial class Album:GenericEntity<int>
     {
 

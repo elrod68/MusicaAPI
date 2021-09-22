@@ -30,13 +30,13 @@ namespace TestAPI
             return controller;
         }
 
-        private MusicaMVC.Controllers.AlbumController GetMVCController()
-        {
-            return new MusicaMVC.Controllers.AlbumController();
-        }
+        //private MusicaMVC.Controllers.AlbumController GetMVCController()
+        //{
+        //    return new MusicaMVC.Controllers.AlbumController("https://localhost:44364/api/Album/");
+        //}
 
         [Fact]
-        public async void GetAllReturnsSome()
+        public async void APIGetAllReturnsSome()
         {
           
             var res= await GetAPIController().GetAll();
@@ -46,7 +46,7 @@ namespace TestAPI
         }
 
         [Fact]
-        public async void GetOne()
+        public async void APIGetOne()
         {
             var res = await GetAPIController().Get(1);
             var album = (res as OkObjectResult).Value as Album;
@@ -55,7 +55,7 @@ namespace TestAPI
         }
 
         [Fact]
-        public async void GetOneAndUpdate()
+        public async void APIGetOneAndUpdate()
         {
             AlbumController con = GetAPIController();
 
@@ -74,7 +74,7 @@ namespace TestAPI
         }
 
         [Fact]
-        public async void GetAlbumTypes()
+        public async void APIGetAlbumTypes()
         {
             var res = await GetAPIController().GetAlbumTypes();
             var albumTypes = (res as OkObjectResult).Value as List<AlbumType>;
@@ -88,7 +88,7 @@ namespace TestAPI
         [InlineData("Rap music", "Unknown", "Sony", 5, 1)]
         [InlineData("World music", "Various", "Sony", 1, 3)]
         [InlineData("Pop music", "Various", "N/A", 3, 1)]
-        public async void AddAndDelete(string name, string artist, string label, int typeID, int stock)
+        public async void APIAddAndDelete(string name, string artist, string label, int typeID, int stock)
         {
             AlbumController con = GetAPIController();
 
@@ -112,5 +112,13 @@ namespace TestAPI
             }
             else throw new XunitException("AddAndDeleteFailed while adding new record");
         }
+
+        //[Fact]
+        //public async void MVCGetOne()
+        //{
+        //    var res = await GetMVCController().GetAlbum(1) as ViewResult;
+
+        //    Assert.True(res != null);
+        //}
     }
 }
