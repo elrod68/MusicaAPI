@@ -1,6 +1,20 @@
 ﻿@model IEnumerable<Album>
 @{ Layout = "_Layout"; ViewBag.Title = "All Albums";}
 
+<script language="javascript">
+
+
+    function DoPost(num) {
+        var grid = new MvcGrid(document.querySelector('.mvc-grid'));
+        //alert(grid.name);
+        $.post("Album/DeleteAlbum/", { ID: num });
+        //grid.reload();
+        alert("Album deleted");
+        location.reload();
+   }
+
+</script>
+
 <h2>Customers</h2>
 <a asp-action="AddAlbum" class="btn btn-sm btn-primary">Add Album</a>
 <a asp-action="GetAlbum" class="btn btn-sm btn-secondary">Get Album</a>
@@ -11,14 +25,17 @@
     {
         //<a href="/Album/UpdateAlbum/1">
         columns.Add(model => "<a href=\"/Album/UpdateAlbum/" + model.ID + "\"> <img src=\"/icon/edit.png\" /> </a>").Encoded(false);
+
         columns.Add(model => model.ID).Titled("ID");
         columns.Add(model => model.AlbumName).Titled("Name");
         columns.Add(model => model.ArtistName).Titled("Artist");
         columns.Add(model => model.AlbumLabel).Titled("Label");
-
         columns.Add(model => model.AlbumTypeDescr).Titled("Type");
         columns.Add(model => model.AlbumStock).Titled("Stock");
+
+        columns.Add(model => "<a href=\"javascript: DoPost(" + model.ID + ")\"><img src=\"/icon/remove.png\" /> </a>").Encoded(false);
     })
+    .Id("mvcGrid")
     .Using(GridFilterMode.Header)
     .Empty("No data found")
     .Filterable()
@@ -31,42 +48,3 @@
         pager.RowsPerPage = @Startup.albumPageSize;
     })
 )
-
-<table class="table table-sm table-striped table-bordered m-2">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Artist</th>
-            <th>Label</th>
-            <th>Type</th>
-            <th>Stock</th>
-            <th>Update</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var album in Model)
-        {
-            <tr>
-                <td>@album.ID</td>
-                <td>@album.AlbumName</td>
-                <td>@album.ArtistName</td>
-                <td>@album.AlbumLabel</td>
-                <td>@album.AlbumTypeDescr</td>
-                <td>@album.AlbumStock</td>
-                <td>
-                    <a asp-action="UpdateAlbum" asp-route-id="@album.ID">
-                        <img src="/icon/edit.png" />
-                    </a>
-                </td>
-                <td>
-                    <form asp-action="DeleteAlbum" method="post">
-                        <input type="hidden" value="@album.ID" name="ID" />
-                        <input type="image" src="/icon/remove.png" />
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
