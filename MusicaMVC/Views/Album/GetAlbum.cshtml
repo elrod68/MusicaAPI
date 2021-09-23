@@ -1,7 +1,7 @@
 ﻿@model Album
 @{ Layout = "_Layout"; ViewBag.Title = "Get Album by Id";}
 
-<h2>Get Customer by Id <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h2>
+<h2>Get Album by Id <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h2>
 <form method="post">
     <div class="form-group">
         <label for="id">Id:</label>
@@ -14,7 +14,7 @@
 
 @if (Model != null && Model.ID != 0)
 {
-    <h2>Customer</h2>
+    <h2>Album</h2>
     <table class="table table-sm table-striped table-bordered m-2">
         <thead>
             <tr>
